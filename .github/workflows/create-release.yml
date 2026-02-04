@@ -1,0 +1,35 @@
+name: Create Release with .zip file
+
+on:
+  push:
+    tags:
+      - 'v*'  # Trigger the workflow when a new tag starting with 'v' is pushed
+
+jobs:
+  create_release:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      
+      - name: Select Files to Include in the Release
+        run: |
+          mkdir release_files
+          cp -r .vscode       release_files/
+          cp -r .devcontainer release_files/
+          cp -r xmScripts     release_files/
+          cp    .gitignore    release_files/
+          
+          cd release_files
+          zip -v -r ../xmDevEnvFiles.zip .
+          tar -zcvf ../xmDevEnvFiles.tgz .
+
+      - name: Create Release and Upload Asset
+        uses: softprops/action-gh-release@v2
+        with:
+          files: | 
+            xmDevEnvFiles.zip
+            xmDevEnvFiles.tgz
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # GitHub token for authentication          
