@@ -1,0 +1,226 @@
+\documentclass{ximera}
+
+\title{A Basic Review of Limits}   % Use xmlatex all -s to compile when SERVE refuses to work.
+\author{Kelly Stady}
+\license{CC: 0}         % replace with an appropriate license, or set it in xmPreamble
+
+\begin{document}
+\begin{abstract}
+    A basic review of limits for students who have practiced evaluating one- and two-sided limits graphically and analytically and evaluating
+    infinite limits.  This review does not include limits \textit{at} infinity---that is, limits in which $x \to \pm \infty.$
+
+\end{abstract}
+\maketitle
+\label{xim:aSecondActivity}  %What is this doing??
+
+% Answer: The label command creates a reference key which can later be referenced using \ref{...} or \pageref{...}
+%It's how Ximera tracks: student progress, completion status, links between activities, prerequisite relationships.
+%It must be globally unique within the course and is required. It's not visible to students.
+%Example:
+%\section{Limits}
+%\label{sec:limits}
+%Then elsewhere:
+%See Section~\ref{sec:limits}.
+
+
+\section*{Limits}
+
+A limit tells us what value a function $f(x)$ approaches as $x$ gets close to a certain number.  If $L$ is a real number, the following notation
+indicates that $f(x)$ gets closer and closer to $L$ as $x$ approaches the value $c.$
+\[ \lim_{x \to c} f(x) = L \]
+
+Limits where $x$ approaches $\infty$ or $-\infty$
+describe the end behavior of a function.  Limits also give us a way to mathematically describe the behavior of a function around a point at
+which it is undefined or discontinuous.  Most importantly, limits are the bridge from algebra to calculus, allowing us to calculate instantaneous
+rates of change from average rates of change.
+
+\section*{Evaluating Limits Graphically}
+
+An easy way to evaluate a limit is to look at the graph of the function.  To see where a function is headed, you can imagine an ant
+traveling along the graph in the direction of a particular $x$ value.
+
+\begin{problem}
+\textrm{Use the graph of $f(x)$ shown below to evaluate the following limits.}
+
+\begin{image}
+    \includegraphics[height=3in, width=3in]{plot2s22.jpg}  %Can use scale = 3 or some other value, in place of height and width
+\end{image}
+
+
+\begin{enumerate}
+    \item $\lim\limits_{x\to 1^{+}}f(x) \begin{prompt}=\answer{1}\end{prompt}$
+    \item $\lim\limits_{x\to 1^{-}}f(x)\begin{prompt}=\answer{-3}\end{prompt}$
+  \end{enumerate}
+
+What can you conclude about $\lim\limits_{x\to 1} f(x)?$
+
+\begin{multipleChoice}
+    \choice{$\lim\limits_{x\to 1} f(x) = -3$}
+    \choice{The limit is infinite.}
+    \choice[correct]{The limit does not exist, since the right and left hand limits differ.}
+  \end{multipleChoice}
+
+\end{problem}
+
+
+\begin{problem}
+Use the graph of $g(x)$ to find $\lim\limits_{x \rightarrow 2} g(x)$, if it exists.  If the limit does not exist, explain why.
+%\[ f(x) = \left\{ \begin{array}{ll} 4 - x, \hspace{0.1in} x \ne 2  &  \\  0, \hspace{0.4in} x = 2  \end{array} \right.     \]
+
+
+\begin{center}
+\includegraphics[height=3in, width=3in]{plotp13s22.jpg}
+\end{center}
+
+%Maple Commands For Graph
+%g := piecewise(x < 1.98, 4 - x, 2.1 < x, 4 - x, 2 <= x and x <= 2.08, -20)
+%g1 := plot(g, x = -1 .. 4.5, -1 .. 4.5, color = black, thickness = 3, discont = true, labelfont = [COURIER, 1], axesfont = ["HELVETICA", "COMPUTER MODERN", 17])
+%g2 := plots[pointplot]([2.05, 1.95], symbol = circle, color = black, symbolsize = 23)
+%g3 := plots[pointplot]([2, 0], symbol = solidcircle, color = black, symbolsize = 23)
+%display({g1, g2, g3})
+
+
+\textbf{Select the correct answer.}
+
+\begin{multipleChoice}
+    \choice{The limit does not exist, since the right and left hand limits differ.}
+    \choice{The limit does not exist, since graph of $g$ has a hole at $x = 2.$}
+    \choice[correct]{$\lim\limits_{x \rightarrow 2} g(x) = 2$}
+    \choice{$\lim\limits_{x \rightarrow 2} g(x) = 0$}
+  \end{multipleChoice}
+
+\begin{feedback}
+Note that in this problem, the value of the limit differs from the value of the function at $x = 2.$  A limit indicates where a function is headed as $x\to c$, which may or may not equal the value of the function at $x =c.$  Furthermore, a limit can exist even when the function is undefined at $x=c.$
+\end{feedback}
+
+\end{problem}
+
+
+\begin{problem}
+Consider the graph of $h(x) = \displaystyle \frac{1}{x}$ shown below.
+
+\begin{center}
+\includegraphics[height=3in, width=3in]{recipfcn.jpg}
+\end{center}
+
+
+Evaluate $\lim\limits_{x\to 0^{-}} h(x).$
+
+\begin{multipleChoice}
+    \choice[correct]{$-\infty$}
+    \choice{$0$}
+    \choice{$\infty$}
+  \end{multipleChoice}
+
+
+Does the limit exist?
+
+\begin{multipleChoice}
+    \choice{Yes.}
+    \choice[correct]{No.}
+\end{multipleChoice}
+
+\end{problem}
+
+\section*{Evaluating Limits Analytically}
+
+In the absence of a graph, limits can be evaluated analytically (by reason or logic).  To evaluate a limit analytically, ALWAYS begin with direct
+substitution.  If the result is a real number, the limit exists and equals that value.  If not, the result of direct substitution provides a clue as to how to proceed.
+
+
+\begin{itemize}
+\item If direct substitution results in $0/0,$ try to
+rewrite the function by factoring, rationalizing or extracting one
+of the limits below.
+
+\[ \lim_{x \rightarrow 0} \frac{\sin x}{x} = 1 \hspace{1in} \lim_{x \rightarrow 0} \frac{1-\cos x}{x} =0 \]
+
+
+\item If direct substitution results in $c/0,$ where $c \ne 0,$ the limit is $\pm \infty.$  To distinguish between $\infty$ and $-\infty,$ note the sign of
+each factor in the numerator and denominator as $x \rightarrow c.$   In some cases, you will need to consider two-sided limits. These can be tricky, so watch the videos below to see some examples. \\
+
+\end{itemize}
+
+
+\begin{center}
+\youtube{MY2rHbExXWo}
+\end{center}
+
+
+
+\section*{Limit Notation}
+
+Keep the following points in mind when evaluating limits.
+
+\begin{enumerate}
+\item[i.]  Once you use direct substitution, drop the notation
+$\displaystyle \lim_{x \rightarrow c}$ and simplify.
+
+\item[ii.]  If a limit does not exist, it is not
+enough to just write that.  You must indicate mathematically
+how the limit fails to exist.  If it fails to exist because the
+left and right-hand limits differ, you must state those limits and
+their values mathematically.  If the limit
+does not exist because it equals $\infty$ or $-\infty,$ you must show your
+work by indicating the sign of each factor in the numerator and
+denominator as $x \rightarrow c.$
+
+\item[iii.]  Don't ever write the following, it's meaningless!  Always indicate what you are taking
+the limit of.
+
+\[ \lim_{x \rightarrow 2} \ \ = 4 \]
+
+
+If, for example, the function of interest is $f(x) = 2x,$ then we can correct the above notation by writing one of the following limits.
+
+\[ \lim_{x \rightarrow 2} 2x  = 4 \hspace{1in}  \lim_{x \rightarrow 2} f(x) = 4 \]
+
+\end{enumerate}
+
+
+\begin{problem} Use a limit, \textit{with proper notation}, to describe the behavior of the function $f(x)=\ln x$ as $x$ approaches $1.$
+
+
+
+    \begin{center}
+        \includegraphics[height=3in, width=3in]{lnplot.png}
+    \end{center}
+
+\textbf{Select all that apply}.
+
+\begin{selectAll}
+    \choice[correct]{$\displaystyle \lim\limits_{x \to 1} f(x) = 0$}
+    \choice{$\displaystyle \lim\limits_{x \to 1} x = \ln 1$}
+    \choice{$\displaystyle \lim\limits_{x \to 1} = 0$}
+    \choice[correct]{$\displaystyle \lim\limits_{x \to 1} \ln x = 0$}
+    \choice{$\displaystyle \lim f(x)= 0$}
+    \choice{$\displaystyle \lim\limits_{x \to 1} f(x) = 1$}
+    \choice{$\displaystyle \lim\limits_{x \to 1} \ln x = 1$}
+    \end{selectAll}
+    \end{problem}
+
+
+
+%$\lim\limits_{x\to 4} \frac{x}{x^2+4} \begin{prompt}=\answer{1/5}\end{prompt}$ direct subs problem
+
+
+\section*{Unusual Cases}
+
+Most limits can be evaluated using the techniques described above, but sometimes we have to rely on other techniques such as the Squeeze (Sandwich) Theorem.  In Calculus II, you will be introduced to L'H$\hat{\textrm{o}}$pital's Rule which can be used to evaluate certain types of limits.
+
+\vspace{1em}
+The following limit is an unusual and interesting case.
+
+\[ \lim_{x \rightarrow 0} \sin \frac{1}{x} \]
+
+
+From the graph below, you can see that the values of $\sin \frac{1}{x}$ continue to oscillate between $\pm 1$ as $x\to 0.$ Since there's no single value that the function approaches as $x\to 0,$ the limit does not exist.
+
+
+\begin{center}
+\includegraphics[height=3in, width=3in]{sinrecip.jpg}
+%Maple Commands for Plot
+%plot(sin(1/x), x = -2 .. 2, -1.5 .. 1.5, color = black, thickness = 3, discont = true, labelfont = [COURIER, 1], axesfont = ["HELVETICA", "COMPUTER MODERN", 17])
+\end{center}
+
+\end{document}
