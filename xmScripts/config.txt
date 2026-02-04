@@ -21,7 +21,7 @@ YOUR_EMAIL="Kelly.Stady@tri-c.edu"
 # !! DO NOT SAVE THE KEY IN THIS config.txt FILE   !!
 #
 
- : "${XIMERA_NAME:=kstadycalculusreview}"
+ : "${XIMERA_NAME:=kstadycalculus1review}"
 ## : "${XIMERA_URL:=http://localhost:2000/}"
 ## : "${XIMERA_URL:=https://xerxes.ximera.org/}"
  : "${XIMERA_URL:=https://ximera.osu.edu/}"
