@@ -307,9 +307,11 @@ Thumbs.db
 # For exam-stuff ... ?
 ans[0-9]*.tex
 
+*.online.*
 
 *.jax
 *.xmjax
+*.xmcss
 *.ids
 *.oc
 
